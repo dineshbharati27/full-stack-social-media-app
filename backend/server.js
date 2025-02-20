@@ -9,13 +9,11 @@ import blogRoutes from './routes/blogRoutes.js';
 import storyRoutes from './routes/storyRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 dotenv.config();
 connectDB();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
 
 const app = express();
 const httpServer = createServer(app);
