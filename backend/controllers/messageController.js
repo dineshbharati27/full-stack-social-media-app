@@ -1,7 +1,7 @@
-const Message = require('../models/Message');
-const User = require('../models/User');
+import Message from '../models/Message.js';
+import User from '../models/User.js';
 
-exports.getMessages = async (req, res) => {
+export const getMessages = async (req, res) => {
   try {
     const { roomId } = req.params;
     const messages = await Message.find({ roomId })
@@ -15,7 +15,7 @@ exports.getMessages = async (req, res) => {
   }
 };
 
-exports.sendMessage = async (req, res) => {
+export const sendMessage = async (req, res) => {
   try {
     const { receiverId, content, roomId } = req.body;
     const senderId = req.userId;

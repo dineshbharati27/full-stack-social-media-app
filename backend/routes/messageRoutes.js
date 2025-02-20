@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
+import { getMessages, sendMessage } from '../controllers/messageController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
+import upload from '../middleware/multer.js';
+
 const router = express.Router();
-const { getMessages, sendMessage } = require('../controllers/messageController');
-const authMiddleware = require('../middleware/authMiddleware');
-const upload = require('../middleware/multer');
 
 router.get('/:roomId', authMiddleware, getMessages);
 router.post('/send', authMiddleware, upload.single('file'), sendMessage);
 
-module.exports = router;
+export default router;

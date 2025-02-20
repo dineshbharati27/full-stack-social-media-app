@@ -1,8 +1,8 @@
-const Blog = require('../models/Blog');
-const User = require('../models/User')
+import Blog from '../models/Blog.js';
+import User from '../models/User.js';
 
 
-exports.createBlog = async (req, res) => {
+export const createBlog = async (req, res) => {
     try {
         // Check if the image file is present
         if (!req.file) {
@@ -31,7 +31,7 @@ exports.createBlog = async (req, res) => {
     }
 };
 
-exports.getUserBlogs = async (req, res) => {
+export const getUserBlogs = async (req, res) => {
     try {
         const userId = req.userId;
         const blogs = await Blog.find({ userId: userId }).sort({ createdAt: -1 })
@@ -43,7 +43,7 @@ exports.getUserBlogs = async (req, res) => {
     
 };
 
-exports.updateBlog = async (req, res) => {
+export const updateBlog = async (req, res) => {
     try {
         const id = req.params.id;
         const userId = req.userId;
@@ -74,7 +74,7 @@ exports.updateBlog = async (req, res) => {
     }
 };
 
-exports.deleteBlog = async (req, res) => {
+export const deleteBlog = async (req, res) => {
     try {
         const id = req.params.id;
         const userId = req.userId;
@@ -94,7 +94,7 @@ exports.deleteBlog = async (req, res) => {
 
 
 
-exports.getAllBlogs = async (req, res) => {
+export const getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find({}).sort({ createdAt: -1 });
         if (!blogs.length) {
@@ -107,7 +107,7 @@ exports.getAllBlogs = async (req, res) => {
     }
 };
 
-exports.likeBlog = async (req, res) => {
+export const likeBlog = async (req, res) => {
     try {
         const blogId = req.params.id;
         const userId = req.userId;
@@ -133,7 +133,7 @@ exports.likeBlog = async (req, res) => {
     }
 };
 
-exports.commentBlog = async (req, res) => {
+export const commentBlog = async (req, res) => {
     try {
         const blogId = req.params.id;
         const userId = req.userId;

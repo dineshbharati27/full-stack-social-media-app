@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
+import { createStory, getStories, deleteStory } from '../controllers/storyController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
+import upload from '../middleware/multer.js';
+
 const router = express.Router();
-const { createStory, getStories, deleteStory } = require('../controllers/storyController');
-const authMiddleware = require('../middleware/authMiddleware');
-const upload = require('../middleware/multer');
 
 router.post('/create', authMiddleware, upload.single('image'), createStory);
 router.get('/feed', authMiddleware, getStories);
 router.delete('/:id', authMiddleware, deleteStory);
 
-module.exports = router;
+export default router;

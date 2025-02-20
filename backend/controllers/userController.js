@@ -1,14 +1,14 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User.js');
-const validator = require('validator')
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import validator from 'validator';
 
 
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET)
 }
 
-exports.registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         let image = '';
@@ -39,7 +39,7 @@ exports.registerUser = async (req, res) => {
     }
 };
 
-exports.loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     try {
         const {email, password} = req.body;
         
@@ -69,7 +69,7 @@ exports.loginUser = async (req, res) => {
 };
 
 
-exports.getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
     try {
         const userId = req.userId;
 
@@ -85,7 +85,7 @@ exports.getUserProfile = async (req, res) => {
     }
 };
 
-exports.getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
     try {
         const users = await User.find().select("-password")
         res.json({success: true, users})
@@ -95,7 +95,7 @@ exports.getUsers = async (req, res) => {
     }
 }
 
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
     try {
         const { name, bio } = req.body;
         const userId = req.userId;
@@ -117,7 +117,7 @@ exports.updateUser = async (req, res) => {
 };
 
 
-exports.followUser = async (req, res) => {
+export const followUser = async (req, res) => {
     try {
         const userToFollowId = req.params.userId;
         const currentUserId = req.userId;

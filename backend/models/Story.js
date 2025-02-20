@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const storySchema = new mongoose.Schema({
   userId: { type: String, required: true },
@@ -14,4 +14,5 @@ const storySchema = new mongoose.Schema({
 // Index for automatic deletion after expiration
 storySchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
-module.exports = mongoose.model('Story', storySchema);
+const Story = mongoose.model('Story', storySchema);
+export default Story;

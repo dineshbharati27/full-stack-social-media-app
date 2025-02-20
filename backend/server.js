@@ -1,18 +1,21 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const { createServer } = require('http');
-const { Server } = require('socket.io');
-const connectDB = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
-const blogRoutes = require('./routes/blogRoutes');
-const storyRoutes = require('./routes/storyRoutes');
-const messageRoutes = require('./routes/messageRoutes');
-const path = require('path');
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
+import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import storyRoutes from './routes/storyRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 dotenv.config();
 connectDB();
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const httpServer = createServer(app);

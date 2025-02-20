@@ -1,8 +1,8 @@
-const Story = require('../models/Story');
-const User = require('../models/User');
+import Story from '../models/Story.js';
+import User from '../models/User.js';
 
 // Create a new story
-exports.createStory = async (req, res) => {
+export const createStory = async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ message: 'Image is required' });
@@ -27,7 +27,7 @@ exports.createStory = async (req, res) => {
 };
 
 // Get stories for user's feed
-exports.getStories = async (req, res) => {
+export const getStories = async (req, res) => {
     try {
         const userId = req.userId;
         const user = await User.findById(userId);
@@ -63,7 +63,7 @@ exports.getStories = async (req, res) => {
 };
 
 // Delete a story
-exports.deleteStory = async (req, res) => {
+export const deleteStory = async (req, res) => {
     try {
         const storyId = req.params.id;
         const userId = req.userId;
