@@ -9,7 +9,7 @@ import blogRoutes from './routes/blogRoutes.js';
 import storyRoutes from './routes/storyRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import path from 'path';
-
+import fs from 'fs';
 dotenv.config();
 connectDB();
 
@@ -43,12 +43,18 @@ app.use('/api/stories', storyRoutes);
 app.use('/api/messages', messageRoutes);
 
 
-if( process.env.NODE_ENV === 'production'){
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+const frontendPath = path.join(__dirname, '../frontend/dist');
+
+if (fs.existsSync(frontendPath)) {
+  app.use(express.static(frontendPath));
+
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+    res.sendFile(path.join(frontendPath, 'index.html'));
   });
+} else {
+  console.error("Frontend build not found. Make sure 'npm run build' runs correctly.");
 }
+
 
 
 
