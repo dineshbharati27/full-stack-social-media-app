@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://full-stack-social-media-app-ten.vercel.app/api' : 'http://localhost:5000/api',
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://full-stack-social-media-app-izsh.onrender.com/api' : 'http://localhost:5000/api',
 });
 
 api.interceptors.request.use((config) => {

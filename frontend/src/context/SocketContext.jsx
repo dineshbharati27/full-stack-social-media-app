@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
 
 const SocketContext = createContext();
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://full-stack-social-media-app-ten.vercel.app/' : 'http://localhost:5000';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://full-stack-social-media-app-izsh.onrender.com/' : 'http://localhost:5000';
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
